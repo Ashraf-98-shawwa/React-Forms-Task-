@@ -25,10 +25,6 @@ export default class SignIn extends Component {
 
   componentDidMount() {
     this.setState((prevState) => ({
-      dataToBeSent: {
-        email: prevState.dataToBeSent.email,
-        password: prevState.dataToBeSent.password,
-      },
       email: prevState.dataToBeSent.email,
       password: prevState.dataToBeSent.password,
     }));
@@ -59,7 +55,7 @@ export default class SignIn extends Component {
       password.setAttribute("type", "password");
     }
   };
-  
+
   render() {
     return (
       <div className="The-Page">
