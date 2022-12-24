@@ -115,7 +115,11 @@ export default class SignUp extends Component {
                 </label>
               </div>
               <div className="input-box">
-                <input type="submit" value="Register Account" />
+                <input
+                  onClick={this.handleSubmit}
+                  type="submit"
+                  value="Register Account"
+                />
               </div>
               <span>or</span>
               <div className="input-box">
