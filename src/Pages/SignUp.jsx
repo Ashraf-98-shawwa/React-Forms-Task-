@@ -29,12 +29,10 @@ export default class SignUp extends Component {
     this.setState({ [id]: value });
   };
 
-
   handleChangeCheckbox = (e) => {
     const { checked } = e.target;
     this.setState({ checkbox: checked });
   };
-
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -47,12 +45,18 @@ export default class SignUp extends Component {
       ...defaults,
     }));
   };
+
+  changepage = (e) => {
+    e.preventDefault();
+    this.props.AppThis.setState({ currentpage: "sign-in" });
+  };
+
   render() {
     return (
       <div className="The-Page">
         <LeftSide page="sign-up" />
         <div className="right-side">
-          <a href="https://www.google.com/">
+          <a onClick={this.changepage} href="https">
             <span> &lt; </span> Back
           </a>
 
@@ -61,7 +65,7 @@ export default class SignUp extends Component {
             <p>
               For the purpose of gamers regulation, your details are required.
             </p>
-            <form onSubmit={this.handleSubmit}>
+            <form>
               <div className="input-box">
                 <label htmlFor="email">Email address*</label>
                 <input
@@ -115,7 +119,7 @@ export default class SignUp extends Component {
               </div>
               <span>or</span>
               <div className="input-box">
-                <button type="submit">
+                <button onClick={this.changepage} type="submit">
                   <img src={GoogleIcon} alt="google-icon" />
                   login
                 </button>

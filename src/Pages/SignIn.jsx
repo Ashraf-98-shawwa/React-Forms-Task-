@@ -56,6 +56,11 @@ export default class SignIn extends Component {
     }
   };
 
+  changepage = (e) => {
+    e.preventDefault();
+    this.props.AppThis.setState({ currentpage: "sign-up" });
+  };
+
   render() {
     return (
       <div className="The-Page">
@@ -125,9 +130,9 @@ export default class SignIn extends Component {
                 <input type="submit" value="Login" />
               </div>
 
-              <a href="https/google.com">
-                Don’t have an account?{" "}
-                <span style={{ color: "blue" }}> Register</span>{" "}
+              <a href="http" onClick={this.changepage}>
+                Don’t have an account?
+                <span style={{ color: "blue" }}> Register</span>
               </a>
             </form>
           </div>
