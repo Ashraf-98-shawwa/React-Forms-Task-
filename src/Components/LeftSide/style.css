@@ -4,10 +4,17 @@
   background: url("../../Images/hand-bg.png") no-repeat center center;
   width: 45%;
   background-size: cover;
+  display: none;
+}
+
+@media  (min-width: 1200px) {
+.left-sign-up {
+ display: block;
+}
 }
 
 .left-sign-up .overlay .sign-up-logo {
-  padding-top: 61px;
+  padding-top: 35px;
   padding-bottom: 94px;
 }
 
@@ -55,7 +62,7 @@
 .left-sign-in {
   height: 100vh;
   width: 45%;
-  padding: 68px 87px 0px 82px;
+  padding: 35px 87px 0px 82px;
   position: relative;
 }
 
@@ -76,6 +83,6 @@
   width: 37%;
   height: 37%;
   position: absolute;
-  bottom: 0;
+  bottom: 20px;
   right:0;
 }
