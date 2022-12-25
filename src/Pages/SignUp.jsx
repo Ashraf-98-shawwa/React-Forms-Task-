@@ -89,6 +89,11 @@ export default class SignUp extends Component {
     }
   };
 
+  showCheck = () => {
+    document.querySelector(".password-check-text").style.display = "block";
+    document.querySelector(".password-strength").style.display = "block";
+  };
+
   render() {
     return (
       <div className="The-Page">
@@ -122,9 +127,13 @@ export default class SignUp extends Component {
                   placeholder="Password"
                   value={this.state.password}
                   onChange={this.handleChangeInput}
+                  onFocus={this.showCheck}
                 />
-                <div className="password-strength"></div>
-                <p className="password-check-text">
+                <div
+                  style={{ display: "none" }}
+                  className="password-strength"
+                ></div>
+                <p style={{ display: "none" }} className="password-check-text">
                   Not bad but you know you can do it better
                 </p>
               </div>
