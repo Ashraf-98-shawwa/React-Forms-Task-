@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/React-Forms-Task-/static/css/main.77ab18ad.css",
+    "main.js": "/React-Forms-Task-/static/js/main.fa9d7108.js",
+    "static/media/hand-bg.png": "/React-Forms-Task-/static/media/hand-bg.448b03ee95d135fb5b50.png",
+    "static/media/joystick-blue.png": "/React-Forms-Task-/static/media/joystick-blue.899607da9aff55bcffb2.png",
+    "index.html": "/React-Forms-Task-/index.html",
+    "main.77ab18ad.css.map": "/React-Forms-Task-/static/css/main.77ab18ad.css.map",
+    "main.fa9d7108.js.map": "/React-Forms-Task-/static/js/main.fa9d7108.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.77ab18ad.css",
+    "static/js/main.fa9d7108.js"
+  ]
+}
