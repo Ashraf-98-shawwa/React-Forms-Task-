@@ -24,9 +24,13 @@ export default class SignUp extends Component {
     dataToBeSent: Backend,
   };
 
+  componentDidMount() {
+    this.checkStrength();
+  }
   handleChangeInput = (e) => {
     const { value, id } = e.target;
     this.setState({ [id]: value });
+    this.checkStrength();
   };
 
   handleChangeCheckbox = (e) => {
@@ -36,6 +40,7 @@ export default class SignUp extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
+
     this.setState((prevState) => ({
       dataToBeSent: {
         email: prevState.email,
@@ -44,11 +49,44 @@ export default class SignUp extends Component {
       },
       ...defaults,
     }));
+
+    document.getElementById("checkbox").checked = false;
   };
 
   changepage = (e) => {
     e.preventDefault();
     this.props.AppThis.setState({ currentpage: "sign-in" });
+  };
+
+  checkStrength = () => {
+    let password = document.querySelector("#password").value;
+    let checkTest = document.querySelector(".password-check-text");
+    let PasswordBar = document.querySelector(".password-strength");
+
+    if (password.length < 5) {
+      PasswordBar.style.setProperty("--widthValue", "25%");
+      PasswordBar.style.setProperty("--colorValue", "red");
+      checkTest.innerHTML = "Password is too short";
+      checkTest.style.color = "red";
+    }
+    if (password.length > 5 && password.length < 10) {
+      PasswordBar.style.setProperty("--widthValue", "50%");
+      PasswordBar.style.setProperty("--colorValue", "#ffc107");
+      checkTest.innerHTML = "Not bad but you know you can do it better";
+      checkTest.style.color = "#ffc107";
+    }
+    if (password.length > 10 && password.length < 15) {
+      PasswordBar.style.setProperty("--widthValue", "70%");
+      PasswordBar.style.setProperty("--colorValue", "#ff7b07");
+      checkTest.innerHTML = "Good Password ";
+      checkTest.style.color = "#ff7b07";
+    }
+    if (password.length > 15) {
+      PasswordBar.style.setProperty("--widthValue", "100%");
+      PasswordBar.style.setProperty("--colorValue", "green");
+      checkTest.innerHTML = "Strong Password";
+      checkTest.style.color = "green";
+    }
   };
 
   render() {

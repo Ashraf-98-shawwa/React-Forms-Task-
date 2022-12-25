@@ -225,10 +225,10 @@ align-self: flex-start;
   content: "";
   display: block;
   height: 4px;
-  background-color: #ffc107;
+  background-color:var(--colorValue,#ffc107) ;
   position: absolute;
   left: 0;
-  width: 75%;
+  width: var(--widthValue,75%);
 }
 .right-side .form-box form .password-check-text {
   font-weight: 500;
