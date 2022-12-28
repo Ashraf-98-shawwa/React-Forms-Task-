@@ -5,6 +5,11 @@ import github from "../Images/github.png";
 import linkedin from "../Images/linkedin.png";
 import twitter from "../Images/twitter.png";
 import eye from "../Images/eye.png";
+import * as yup from "yup";
+import swal from "sweetalert"
+
+const regularExpression =
+  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
 const defaults = {
   email: "",
@@ -13,8 +18,9 @@ const defaults = {
 
 const Backend = {
   email: "Backend@email.com",
-  password: "Backendpassword",
+  password: "123321!Aa",
 };
+
 
 export default class SignIn extends Component {
   state = {
@@ -23,11 +29,18 @@ export default class SignIn extends Component {
     dataToBeSent: Backend,
   };
 
+  schema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(8,"Password should be more than 8 characters").matches(regularExpression,'Password should be strong (numbers,capital and small letters ,sympol').required(),
+  });
+
   componentDidMount() {
     this.setState((prevState) => ({
       email: prevState.dataToBeSent.email,
       password: prevState.dataToBeSent.password,
     }));
+
+
   }
 
   handleChangeInput = (e) => {
@@ -37,13 +50,45 @@ export default class SignIn extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.setState((prevState) => ({
-      dataToBeSent: {
-        email: prevState.email,
-        password: prevState.password,
-      },
-      ...defaults,
-    }));
+
+    this.schema
+      .validate(
+        {
+          email: this.state.email,
+          password: this.state.password,
+        },
+        { abortEarly: true }
+      )
+      .then(() => {
+        console.log("valid");
+        swal({
+          title: "Success!",
+          text: "logged In",
+          icon: "success",
+          timer: 2000,
+          button: false,
+        });
+        this.setState((prevState) => ({
+          dataToBeSent: {
+            email: prevState.email,
+            password: prevState.password,
+          },
+          ...defaults,
+        }));
+      })
+      .catch((e) => 
+      {
+        console.log(e.errors)
+ swal({
+   title: "Error!",
+   text: `${e.errors}`,
+   icon: "error",
+   button: false,
+ });
+      }
+        
+      
+      );
   };
 
   showpassword = () => {

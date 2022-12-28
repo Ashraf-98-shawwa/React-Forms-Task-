@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import LeftSide from "../Components/LeftSide";
 import GoogleIcon from "../Images/google-icon.png";
+import * as yup from "yup";
+import swal from "sweetalert";
+
+
+const regularExpression =
+  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
 
 const defaults = {
   email: "",
@@ -15,6 +22,8 @@ const Backend = {
   checkbox: false,
 };
 
+
+
 export default class SignUp extends Component {
   state = {
     email: "",
@@ -23,6 +32,19 @@ export default class SignUp extends Component {
     checkbox: false,
     dataToBeSent: Backend,
   };
+
+  schema = yup.object().shape({
+    email: yup.string().email().required(),
+    password: yup.string().min(8).matches(regularExpression).required(),
+    passwordRepeat: yup
+      .string()
+      .oneOf([yup.ref("password"), null])
+      .required(),
+    checkbox: yup
+      .boolean()
+      .oneOf([true], "You should check the checkbox")
+      .required(),
+  });
 
   componentDidMount() {
     this.checkStrength();
@@ -41,16 +63,50 @@ export default class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-    this.setState((prevState) => ({
-      dataToBeSent: {
-        email: prevState.email,
-        password: prevState.password,
-        checkbox: prevState.checkbox,
-      },
-      ...defaults,
-    }));
 
-    document.getElementById("checkbox").checked = false;
+      this.schema
+        .validate(
+          {
+            email: this.state.email,
+            password: this.state.password,
+            passwordRepeat: this.state.passwordRepeat,
+            checkbox: this.state.checkbox,
+          },
+          { abortEarly: true }
+        )
+        .then(() => {
+          console.log("valid");
+            swal({
+              title: "Success!",
+              text: "Registed Successfully",
+              icon: "success",
+              timer: 2000,
+              button: false,
+            });
+          this.setState((prevState) => ({
+            dataToBeSent: {
+              email: prevState.email,
+              password: prevState.password,
+              checkbox: prevState.checkbox,
+            },
+            ...defaults,
+          }));
+          document.getElementById("checkbox").checked = false;
+        })
+        .catch((e) => {
+          console.log(e.errors)
+               swal({
+                 title: "Error!",
+                 text: `${e.errors}`,
+                 icon: "error",
+                 button: false,
+               });  
+        }
+        );
+
+
+   
+
   };
 
   changepage = (e) => {
