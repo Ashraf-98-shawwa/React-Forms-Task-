@@ -46,9 +46,6 @@ export default class SignUp extends Component {
       .required(),
   });
 
-  componentDidMount() {
-    this.checkStrength();
-  }
   handleChangeInput = (e) => {
     const { value, id } = e.target;
     this.setState({ [id]: value });
@@ -63,91 +60,45 @@ export default class SignUp extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
 
-
-      this.schema
-        .validate(
-          {
-            email: this.state.email,
-            password: this.state.password,
-            passwordRepeat: this.state.passwordRepeat,
-            checkbox: this.state.checkbox,
+    this.schema
+      .validate({
+        email: this.state.email,
+        password: this.state.password,
+        passwordRepeat: this.state.passwordRepeat,
+        checkbox: this.state.checkbox,
+      })
+      .then(() => {
+        console.log("valid");
+        swal({
+          title: "Success!",
+          text: "Registed Successfully",
+          icon: "success",
+          timer: 2000,
+          button: false,
+        });
+        this.setState((prevState) => ({
+          dataToBeSent: {
+            email: prevState.email,
+            password: prevState.password,
+            checkbox: prevState.checkbox,
           },
-          { abortEarly: true }
-        )
-        .then(() => {
-          console.log("valid");
-            swal({
-              title: "Success!",
-              text: "Registed Successfully",
-              icon: "success",
-              timer: 2000,
-              button: false,
-            });
-          this.setState((prevState) => ({
-            dataToBeSent: {
-              email: prevState.email,
-              password: prevState.password,
-              checkbox: prevState.checkbox,
-            },
-            ...defaults,
-          }));
-          document.getElementById("checkbox").checked = false;
-        })
-        .catch((e) => {
-          console.log(e.errors)
-               swal({
-                 title: "Error!",
-                 text: `${e.errors}`,
-                 icon: "error",
-                 button: false,
-               });  
-        }
-        );
-
-
-   
-
+          ...defaults,
+        }));
+      })
+      .catch((e) => {
+        console.log(e.errors);
+        swal({
+          title: "Error!",
+          text: `${e.errors}`,
+          icon: "error",
+          button: false,
+        });
+      });
   };
 
   changepage = (e) => {
     e.preventDefault();
-    this.props.AppThis.setState({ currentpage: "sign-in" });
-  };
-
-  checkStrength = () => {
-    let password = document.querySelector("#password").value;
-    let checkTest = document.querySelector(".password-check-text");
-    let PasswordBar = document.querySelector(".password-strength");
-
-    if (password.length < 5) {
-      PasswordBar.style.setProperty("--widthValue", "25%");
-      PasswordBar.style.setProperty("--colorValue", "red");
-      checkTest.innerHTML = "Password is too short";
-      checkTest.style.color = "red";
-    }
-    if (password.length > 5 && password.length < 10) {
-      PasswordBar.style.setProperty("--widthValue", "50%");
-      PasswordBar.style.setProperty("--colorValue", "#ffc107");
-      checkTest.innerHTML = "Not bad but you know you can do it better";
-      checkTest.style.color = "#ffc107";
-    }
-    if (password.length > 10 && password.length < 15) {
-      PasswordBar.style.setProperty("--widthValue", "70%");
-      PasswordBar.style.setProperty("--colorValue", "#ff7b07");
-      checkTest.innerHTML = "Good Password ";
-      checkTest.style.color = "#ff7b07";
-    }
-    if (password.length > 15) {
-      PasswordBar.style.setProperty("--widthValue", "100%");
-      PasswordBar.style.setProperty("--colorValue", "green");
-      checkTest.innerHTML = "Strong Password";
-      checkTest.style.color = "green";
-    }
-  };
-
-  showCheck = () => {
-    document.querySelector(".password-check-text").style.display = "block";
-    document.querySelector(".password-strength").style.display = "block";
+    this.props.changePage("sign-in");
   };
 
   render() {
@@ -183,7 +134,6 @@ export default class SignUp extends Component {
                   placeholder="Password"
                   value={this.state.password}
                   onChange={this.handleChangeInput}
-                  onFocus={this.showCheck}
                 />
                 <div
                   style={{ display: "none" }}
@@ -212,6 +162,7 @@ export default class SignUp extends Component {
                   id="checkbox"
                   type="checkbox"
                   onChange={this.handleChangeCheckbox}
+                  checked={this.state.checkbox}
                 />
                 <label style={{ display: "inline" }} htmlFor="terms">
                   I agree to terms & conditions

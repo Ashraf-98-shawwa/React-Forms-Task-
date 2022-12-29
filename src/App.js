@@ -4,19 +4,24 @@ import SignIn from "./Pages/SignIn";
 
 export default class App extends Component {
   state = {
-    currentpage: "sign-up",
+    currentpage: "sign-in",
   };
+
+  changePage = (target) => {
+    this.setState({ currentpage: target });
+  }
+
   render() {
     if (this.state.currentpage === "sign-in") {
       return (
         <div className="App">
-          <SignIn AppThis={this} />
+          <SignIn changePage={this.changePage} />
         </div>
       );
     } else {
       return (
         <div className="App">
-          <SignUp AppThis={this} />
+          <SignUp changePage={this.changePage} />
         </div>
       );
     }

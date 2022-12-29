@@ -6,7 +6,7 @@ import linkedin from "../Images/linkedin.png";
 import twitter from "../Images/twitter.png";
 import eye from "../Images/eye.png";
 import * as yup from "yup";
-import swal from "sweetalert"
+import swal from "sweetalert";
 
 const regularExpression =
   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
@@ -21,17 +21,24 @@ const Backend = {
   password: "123321!Aa",
 };
 
-
 export default class SignIn extends Component {
   state = {
     email: "",
     password: "",
     dataToBeSent: Backend,
+    passwordtype: "password",
   };
 
   schema = yup.object().shape({
     email: yup.string().email().required(),
-    password: yup.string().min(8,"Password should be more than 8 characters").matches(regularExpression,'Password should be strong (numbers,capital and small letters ,sympol').required(),
+    password: yup
+      .string()
+      .min(8, "Password should be more than 8 characters")
+      .matches(
+        regularExpression,
+        "Password should be strong (numbers,capital and small letters ,sympol"
+      )
+      .required(),
   });
 
   componentDidMount() {
@@ -39,8 +46,6 @@ export default class SignIn extends Component {
       email: prevState.dataToBeSent.email,
       password: prevState.dataToBeSent.password,
     }));
-
-
   }
 
   handleChangeInput = (e) => {
@@ -76,34 +81,26 @@ export default class SignIn extends Component {
           ...defaults,
         }));
       })
-      .catch((e) => 
-      {
-        console.log(e.errors)
- swal({
-   title: "Error!",
-   text: `${e.errors}`,
-   icon: "error",
-   button: false,
- });
-      }
-        
-      
-      );
+      .catch((e) => {
+        console.log(e.errors);
+        swal({
+          title: "Error!",
+          text: `${e.errors}`,
+          icon: "error",
+          button: false,
+        });
+      });
   };
 
   showpassword = () => {
-    let password = document.getElementById("password");
-
-    if (password.type === "password") {
-      password.setAttribute("type", "text");
-    } else {
-      password.setAttribute("type", "password");
-    }
+    this.setState((prevState) => ({
+      passwordtype: prevState.passwordtype === "text" ? "password" : "text",
+    }));
   };
 
   changepage = (e) => {
     e.preventDefault();
-    this.props.AppThis.setState({ currentpage: "sign-up" });
+    this.props.changePage("sign-up");
   };
 
   render() {
@@ -166,7 +163,7 @@ export default class SignIn extends Component {
                   value={this.state.password}
                   onChange={this.handleChangeInput}
                   id="password"
-                  type="password"
+                  type={this.state.passwordtype}
                   placeholder="•••••••••"
                 />
               </div>
