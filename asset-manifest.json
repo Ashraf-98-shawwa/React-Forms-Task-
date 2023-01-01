@@ -1,15 +1,26 @@
 {
   "files": {
-    "main.css": "/React-Forms-Task-/static/css/main.77ab18ad.css",
-    "main.js": "/React-Forms-Task-/static/js/main.b531719f.js",
+    "main.css": "/React-Forms-Task-/static/css/main.acaf3f5a.css",
+    "main.js": "/React-Forms-Task-/static/js/main.663f58c3.js",
     "static/media/hand-bg.png": "/React-Forms-Task-/static/media/hand-bg.448b03ee95d135fb5b50.png",
+    "static/media/123321.png": "/React-Forms-Task-/static/media/123321.734a9d0df18a8513d082.png",
+    "static/media/wars.png": "/React-Forms-Task-/static/media/wars.3cc397b6ae5caff9855a.png",
+    "static/media/spiderman.png": "/React-Forms-Task-/static/media/spiderman.482c7273280473214740.png",
+    "static/media/superman.png": "/React-Forms-Task-/static/media/superman.eaa82ccaab8f8c1bb645.png",
     "static/media/joystick-blue.png": "/React-Forms-Task-/static/media/joystick-blue.899607da9aff55bcffb2.png",
+    "static/media/FRIENDS.png": "/React-Forms-Task-/static/media/FRIENDS.c2e5ac9d7a5b28e54e4f.png",
+    "static/media/user.png": "/React-Forms-Task-/static/media/user.25b355893ba8e77578ca.png",
+    "static/media/Streak.png": "/React-Forms-Task-/static/media/Streak.650e46225bc98646ae62.png",
+    "static/media/game1.png": "/React-Forms-Task-/static/media/game1.9346e51add4e2bbe918b.png",
+    "static/media/game3.png": "/React-Forms-Task-/static/media/game3.99ce7eaa9943f25bdc60.png",
+    "static/media/game2.png": "/React-Forms-Task-/static/media/game2.47b95452543755a8f19f.png",
+    "static/media/game4.png": "/React-Forms-Task-/static/media/game4.d89562ab88a274c1d2d7.png",
     "index.html": "/React-Forms-Task-/index.html",
-    "main.77ab18ad.css.map": "/React-Forms-Task-/static/css/main.77ab18ad.css.map",
-    "main.b531719f.js.map": "/React-Forms-Task-/static/js/main.b531719f.js.map"
+    "main.acaf3f5a.css.map": "/React-Forms-Task-/static/css/main.acaf3f5a.css.map",
+    "main.663f58c3.js.map": "/React-Forms-Task-/static/js/main.663f58c3.js.map"
   },
   "entrypoints": [
-    "static/css/main.77ab18ad.css",
-    "static/js/main.b531719f.js"
+    "static/css/main.acaf3f5a.css",
+    "static/js/main.663f58c3.js"
   ]
 }
