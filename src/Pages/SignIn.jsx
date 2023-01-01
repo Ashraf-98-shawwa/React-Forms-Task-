@@ -7,6 +7,7 @@ import twitter from "../Images/twitter.png";
 import eye from "../Images/eye.png";
 import * as yup from "yup";
 import swal from "sweetalert";
+import { Link } from "react-router-dom";
 
 const regularExpression =
   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
@@ -98,10 +99,7 @@ export default class SignIn extends Component {
     }));
   };
 
-  changepage = (e) => {
-    e.preventDefault();
-    this.props.changePage("sign-up");
-  };
+
 
   render() {
     return (
@@ -172,10 +170,10 @@ export default class SignIn extends Component {
                 <input type="submit" value="Login" />
               </div>
 
-              <a href="http" onClick={this.changepage}>
+              <Link to="/Sign-up">
                 Don’t have an account?
                 <span style={{ color: "blue" }}> Register</span>
-              </a>
+              </Link>
             </form>
           </div>
         </div>

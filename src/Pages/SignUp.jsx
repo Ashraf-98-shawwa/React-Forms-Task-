@@ -3,11 +3,10 @@ import LeftSide from "../Components/LeftSide";
 import GoogleIcon from "../Images/google-icon.png";
 import * as yup from "yup";
 import swal from "sweetalert";
-
+import { Link } from "react-router-dom";
 
 const regularExpression =
   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
-
 
 const defaults = {
   email: "",
@@ -21,8 +20,6 @@ const Backend = {
   password: "",
   checkbox: false,
 };
-
-
 
 export default class SignUp extends Component {
   state = {
@@ -48,8 +45,8 @@ export default class SignUp extends Component {
 
   handleChangeInput = (e) => {
     const { value, id } = e.target;
+    console.log(id)
     this.setState({ [id]: value });
-    this.checkStrength();
   };
 
   handleChangeCheckbox = (e) => {
@@ -96,19 +93,14 @@ export default class SignUp extends Component {
       });
   };
 
-  changepage = (e) => {
-    e.preventDefault();
-    this.props.changePage("sign-in");
-  };
-
   render() {
     return (
       <div className="The-Page">
         <LeftSide page="sign-up" />
         <div className="right-side">
-          <a onClick={this.changepage} href="https">
+          <Link to="/Sign-in">
             <span> &lt; </span> Back
-          </a>
+          </Link>
 
           <div className="form-box">
             <h1>Register Individual Account!</h1>
@@ -177,10 +169,12 @@ export default class SignUp extends Component {
               </div>
               <span>or</span>
               <div className="input-box">
-                <button onClick={this.changepage} type="submit">
-                  <img src={GoogleIcon} alt="google-icon" />
-                  login
-                </button>
+                <Link to="/Sign-in">
+                  <button type="submit">
+                    <img src={GoogleIcon} alt="google-icon" />
+                    login
+                  </button>
+                </Link>
               </div>
             </form>
           </div>
