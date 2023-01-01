@@ -7,7 +7,7 @@ import twitter from "../Images/twitter.png";
 import eye from "../Images/eye.png";
 import * as yup from "yup";
 import swal from "sweetalert";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 
 const regularExpression =
   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
@@ -81,6 +81,7 @@ export default class SignIn extends Component {
           },
           ...defaults,
         }));
+
       })
       .catch((e) => {
         console.log(e.errors);

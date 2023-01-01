@@ -4,7 +4,7 @@
   border-radius: 65px;
   display: flex;
   align-items: flex-end;
-  justify-content: end;
+  justify-content: flex-end;
   overflow: hidden;
   position: relative;
 }
