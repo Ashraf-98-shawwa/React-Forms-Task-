@@ -1,0 +1,10 @@
+
+.HomePage .home-content .Games {
+  margin-bottom: 84px;
+}
+
+
+.HomePage .home-content .Games .images {
+  display: flex;
+  gap:39px;
+}

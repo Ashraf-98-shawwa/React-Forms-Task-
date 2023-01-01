@@ -6,7 +6,8 @@
 
 body {
 font-family: 'Inter', sans-serif;
-background: #fbf5f5;
+background: #FBFBFB;
+
 }
 
 .The-Page {
@@ -276,3 +277,14 @@ align-self: flex-start;
   font-size: 16px;
   line-height: 19px;
 }
+
+
+/* HomePageStyle Start */
+.HomePage {
+  display: grid;
+    grid-template-columns: 113px auto;
+    background-color: #FBFBFB;
+    min-height: 100vh;
+}
+
+/* HomePageStyle End */
