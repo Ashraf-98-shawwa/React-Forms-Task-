@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PasswordStrength from "../PasswordStrength";
 
 export default class Input extends Component {
   render() {
@@ -13,10 +14,7 @@ export default class Input extends Component {
             value={this.props.value}
             onChange={this.props.onChange}
           />
-          <div style={{ display: "none" }} className="password-strength"></div>
-          <p style={{ display: "none" }} className="password-check-text">
-            Not bad but you know you can do it better
-          </p>
+          <PasswordStrength strength={this.props.strength} />
         </div>
       );
     } else

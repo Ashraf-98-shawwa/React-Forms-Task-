@@ -29,6 +29,7 @@ export default class SignUp extends Component {
     passwordRepeat: "",
     checkbox: false,
     dataToBeSent: Backend,
+    strength: "0",
   };
 
   schema = yup.object().shape({
@@ -51,9 +52,35 @@ export default class SignUp extends Component {
       .required(),
   });
 
+  checkPasswordStrength = (password) => {
+    let strengthValue = 0;
+    if (password.length >= 8) {
+      strengthValue = strengthValue + 1;
+    }
+      if (password.match(/[a-z]/g) ) {
+        strengthValue = strengthValue + 1;
+      }
+      if (password.match(/[A-Z]/g)) {
+        strengthValue = strengthValue + 1;
+      }
+      if (password.match(/[0-9]/g)) {
+        strengthValue = strengthValue + 1;
+      }
+
+      // Check if it contains Sympols 
+      if (password.match(/[^0-9a-zA-Z\s]/g)) {
+        strengthValue = strengthValue + 1;
+      }
+    this.setState({ strength: strengthValue.toString() });
+  };
+
   handleChangeInput = (e) => {
     const { value, id } = e.target;
     this.setState({ [id]: value });
+
+    if (e.target.id === "password") {
+      this.checkPasswordStrength(e.target.value);
+    }
   };
 
   handleChangeCheckbox = (e) => {
@@ -132,6 +159,7 @@ export default class SignUp extends Component {
                 value={this.state.password}
                 onChange={this.handleChangeInput}
                 passwordMessage={true}
+                strength={this.state.strength}
               />
               <Input
                 label="Repeat password*"

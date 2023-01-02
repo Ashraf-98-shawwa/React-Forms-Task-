@@ -213,32 +213,6 @@ align-self: flex-start;
   outline: none;
 }
 
-.right-side .form-box form .password-strength {
-  margin-top: 5px;
-  background: #c4c4c4;
-  border-radius: 4px;
-  height: 4px;
-  position: relative;
-  width: 426px;
-}
-
-.right-side .form-box form .password-strength::after {
-  content: "";
-  display: block;
-  height: 4px;
-  background-color:var(--colorValue,#ffc107) ;
-  position: absolute;
-  left: 0;
-  width: var(--widthValue,75%);
-}
-.right-side .form-box form .password-check-text {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 17px;
-  color: #ffc107;
-  margin-top: 5px;
-
-}
 
 .right-side .form-box form input[type="submit"] {
   background-color: #1565d8;
