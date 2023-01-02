@@ -4,6 +4,7 @@ import GoogleIcon from "../Images/google-icon.png";
 import * as yup from "yup";
 import swal from "sweetalert";
 import { Link } from "react-router-dom";
+import Input from "../Components/Input";
 
 const regularExpression =
   /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
@@ -32,7 +33,14 @@ export default class SignUp extends Component {
 
   schema = yup.object().shape({
     email: yup.string().email().required(),
-    password: yup.string().min(8).matches(regularExpression).required(),
+    password: yup
+      .string()
+      .min(8)
+      .matches(
+        regularExpression,
+        "Password should contain small letters,capital letters,numbers and special charachter"
+      )
+      .required(),
     passwordRepeat: yup
       .string()
       .oneOf([yup.ref("password"), null])
@@ -45,7 +53,6 @@ export default class SignUp extends Component {
 
   handleChangeInput = (e) => {
     const { value, id } = e.target;
-    console.log(id)
     this.setState({ [id]: value });
   };
 
@@ -108,43 +115,33 @@ export default class SignUp extends Component {
               For the purpose of gamers regulation, your details are required.
             </p>
             <form>
-              <div className="input-box">
-                <label htmlFor="email">Email address*</label>
-                <input
-                  id="email"
-                  type="text"
-                  placeholder="Enter email address"
-                  value={this.state.email}
-                  onChange={this.handleChangeInput}
-                />
-              </div>
-              <div className="input-box">
-                <label htmlFor="password">Create password*</label>
-                <input
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  value={this.state.password}
-                  onChange={this.handleChangeInput}
-                />
-                <div
-                  style={{ display: "none" }}
-                  className="password-strength"
-                ></div>
-                <p style={{ display: "none" }} className="password-check-text">
-                  Not bad but you know you can do it better
-                </p>
-              </div>
-              <div className="input-box">
-                <label htmlFor="repeat-password">Repeat password*</label>
-                <input
-                  id="passwordRepeat"
-                  type="password"
-                  placeholder="Repeat password"
-                  value={this.state.passwordRepeat}
-                  onChange={this.handleChangeInput}
-                />
-              </div>
+              <Input
+                label="Email address*"
+                id="email"
+                type="text"
+                placeholder="Enter email address"
+                value={this.state.email}
+                onChange={this.handleChangeInput}
+              />
+
+              <Input
+                label="Create password*"
+                id="password"
+                type="password"
+                placeholder="Password"
+                value={this.state.password}
+                onChange={this.handleChangeInput}
+                passwordMessage={true}
+              />
+              <Input
+                label="Repeat password*"
+                id="passwordRepeat"
+                type="password"
+                placeholder="Repeat password"
+                value={this.state.passwordRepeat}
+                onChange={this.handleChangeInput}
+              />
+
               <div
                 style={{ display: "flex", alignItems: "center", gap: "5px" }}
                 className="input-box"
@@ -160,6 +157,7 @@ export default class SignUp extends Component {
                   I agree to terms & conditions
                 </label>
               </div>
+
               <div className="input-box">
                 <input
                   onClick={this.handleSubmit}
