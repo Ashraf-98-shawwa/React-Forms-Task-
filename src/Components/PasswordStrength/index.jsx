@@ -3,7 +3,7 @@ import "./style.css";
 
 export default class PasswordStrength extends Component {
   render() {
-    if (this.props.strength === "1" ) {
+    if (this.props.strength === "1" || this.props.strength === "2") {
       return (
         <>
           <div className="password-strength short"></div>
@@ -13,17 +13,7 @@ export default class PasswordStrength extends Component {
         </>
       );
     }
-    if (this.props.strength === "2") {
-      return (
-        <>
-          <div className="password-strength short"></div>
-          <p style={{ color: "red" }} className="password-check-text">
-            Password is too short ..
-          </p>
-        </>
-      );
-    }
-
+   
     if (this.props.strength === "3") {
       return (
         <>
