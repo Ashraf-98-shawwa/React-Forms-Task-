@@ -14,6 +14,7 @@ const defaults = {
   password: "",
   passwordRepeat: "",
   checkbox: false,
+  strength: "0",
 };
 
 const Backend = {
